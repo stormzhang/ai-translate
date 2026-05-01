@@ -71,7 +71,7 @@ install_commands() {
     mkdir -p "$dir"
     if [ -f "$dir/t.md" ]; then
         printf "$name 已安装翻译工具，是否覆盖更新？(y/N) "
-        read -r answer
+        read -r answer < /dev/tty
         if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
             echo "[SKIP] $name - skipped"
             INSTALLED=1
