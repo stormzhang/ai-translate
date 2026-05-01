@@ -102,8 +102,14 @@ if [ -d "$HOME/.cursor" ]; then
 fi
 
 if [ $INSTALLED -eq 0 ]; then
-    echo "未检测到支持的 AI 工具（Claude Code / Codex / OpenCode / Cursor）。"
-    echo "请先安装其中一个。"
+    echo "未检测到支持的 AI 编程工具，请先安装以下任一工具："
+    echo ""
+    echo "  Claude Code  https://claude.ai/code"
+    echo "  Codex        https://github.com/openai/codex"
+    echo "  OpenCode     https://github.com/opencode-ai/opencode"
+    echo "  Cursor       https://cursor.com"
+    echo ""
+    echo "安装完成后重新运行此脚本即可。"
     exit 1
 fi
 
