@@ -1,21 +1,24 @@
 #!/bin/bash
 
+VERSION="1.0.0"
 INSTALLED=0
 
 # --- embedded command files ---
 
 read -r -d '' T_MD << 'PROMPT_EOF'
+AI 翻译（支持中英双向及多语言）@author: stormzhang
+
 自动识别输入语言。中文翻译为英文，其他任何语言都翻译为中文。
 
 如果输入是英文单个单词，按这个格式输出：
-【单词】音标
-词性. 中文释义
-示例：简短英文例句
+**【单词】** `音标`
+词性. 中文释义（如果有多个常用词性或含义，分行列出，最多 5 个）
+*示例：简短英文例句*（只需 1 个，挑最常用的含义）
 翻译：例句的中文翻译
 
 如果输入是中文单个词语，按这个格式输出：
-【词语】对应英文单词（音标）
-示例：简短英文例句
+**【词语】** 对应英文单词 `音标`
+*示例：简短英文例句*
 翻译：例句的中文翻译
 
 如果是短语或句子，直接给出对应语言的翻译即可。
@@ -29,17 +32,19 @@ read -r -d '' T_MD << 'PROMPT_EOF'
 PROMPT_EOF
 
 read -r -d '' TS_MD << 'PROMPT_EOF'
+AI 翻译 + 语音朗读（支持中英双向及多语言）@author: stormzhang
+
 自动识别输入语言。中文翻译为英文，其他任何语言都翻译为中文。
 
 如果输入是英文单个单词，按这个格式输出：
-【单词】音标
-词性. 中文释义
-示例：简短英文例句
+**【单词】** `音标`
+词性. 中文释义（如果有多个常用词性或含义，分行列出，最多 5 个）
+*示例：简短英文例句*（只需 1 个，挑最常用的含义）
 翻译：例句的中文翻译
 
 如果输入是中文单个词语，按这个格式输出：
-【词语】对应英文单词（音标）
-示例：简短英文例句
+**【词语】** 对应英文单词 `音标`
+*示例：简短英文例句*
 翻译：例句的中文翻译
 
 如果是短语或句子，直接给出对应语言的翻译即可。
@@ -61,44 +66,48 @@ PROMPT_EOF
 
 # --- install ---
 
+install_commands() {
+    local name=$1 dir=$2
+    mkdir -p "$dir"
+    if [ -f "$dir/t.md" ]; then
+        printf "$name 已安装翻译工具，是否覆盖更新？(y/N) "
+        read -r answer
+        if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+            echo "[SKIP] $name - skipped"
+            INSTALLED=1
+            return
+        fi
+        echo "$T_MD" > "$dir/t.md"
+        echo "$TS_MD" > "$dir/ts.md"
+        echo "[OK] $name - updated"
+    else
+        echo "$T_MD" > "$dir/t.md"
+        echo "$TS_MD" > "$dir/ts.md"
+        echo "[OK] $name - installed"
+    fi
+    INSTALLED=1
+}
+
 # Claude Code
 if [ -d "$HOME/.claude" ]; then
-    mkdir -p "$HOME/.claude/commands"
-    echo "$T_MD" > "$HOME/.claude/commands/t.md"
-    echo "$TS_MD" > "$HOME/.claude/commands/ts.md"
-    echo "[OK] Claude Code - installed"
-    INSTALLED=1
+    install_commands "Claude Code" "$HOME/.claude/commands"
 fi
 
 # Codex
 if [ -d "$HOME/.codex" ]; then
-    mkdir -p "$HOME/.codex/prompts"
-    echo "$T_MD" > "$HOME/.codex/prompts/t.md"
-    echo "$TS_MD" > "$HOME/.codex/prompts/ts.md"
-    echo "[OK] Codex - installed"
-    INSTALLED=1
+    install_commands "Codex" "$HOME/.codex/prompts"
 fi
 
 # OpenCode
 OPENCODE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/commands"
 if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/opencode" ] || [ -d "$HOME/.opencode" ]; then
-    if [ -d "$HOME/.opencode" ]; then
-        OPENCODE_DIR="$HOME/.opencode/commands"
-    fi
-    mkdir -p "$OPENCODE_DIR"
-    echo "$T_MD" > "$OPENCODE_DIR/t.md"
-    echo "$TS_MD" > "$OPENCODE_DIR/ts.md"
-    echo "[OK] OpenCode - installed"
-    INSTALLED=1
+    [ -d "$HOME/.opencode" ] && OPENCODE_DIR="$HOME/.opencode/commands"
+    install_commands "OpenCode" "$OPENCODE_DIR"
 fi
 
 # Cursor
 if [ -d "$HOME/.cursor" ]; then
-    mkdir -p "$HOME/.cursor/commands"
-    echo "$T_MD" > "$HOME/.cursor/commands/t.md"
-    echo "$TS_MD" > "$HOME/.cursor/commands/ts.md"
-    echo "[OK] Cursor - installed"
-    INSTALLED=1
+    install_commands "Cursor" "$HOME/.cursor/commands"
 fi
 
 if [ $INSTALLED -eq 0 ]; then
@@ -114,6 +123,8 @@ if [ $INSTALLED -eq 0 ]; then
 fi
 
 echo ""
-echo "Done! Usage:"
+echo "Done! v${VERSION} installed"
+echo ""
+echo "Usage:"
 echo "  /t word          translate"
 echo "  /ts word         translate + speech"
