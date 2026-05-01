@@ -8,6 +8,14 @@ AI translate tool for Claude Code, Codex, OpenCode, Cursor & Windsurf. One-line 
 
 ![demo](assets/demo.png)
 
+## Why ai-translate
+
+1. **The only multi-tool translation plugin** — Works across Claude Code, Codex, Cursor, Windsurf & OpenCode
+2. **Zero friction** — Never leave your coding tool, just `/t word`
+3. **AI-native** — Powered by the built-in LLM, no extra API key needed
+4. **Ultra-lightweight** — Just a prompt file, zero dependencies, minimal token usage
+5. **TTS built-in** — `/ts` reads aloud after translating
+
 ## Features
 
 - **Multi-language** — Auto-detect input language. Chinese to English, any other language to Chinese

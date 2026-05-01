@@ -8,6 +8,14 @@ AI 编程工具的翻译插件，一行命令安装，支持多语言翻译和�
 
 ![demo](assets/demo.png)
 
+## 为什么选 ai-translate
+
+1. **唯一的多编码工具翻译插件** — 同时覆盖 Claude Code、Codex、Cursor、Windsurf、OpenCode 五个平台
+2. **零摩擦** — 不离开编码工具，`/t word` 直接查词
+3. **AI 原生** — 利用编码工具内置 LLM，不需要额外 API Key
+4. **极致轻量** — 本质是一段 prompt，零依赖、秒安装、token 消耗极少
+5. **TTS 集成** — `/ts` 带语音朗读
+
 ## 功能特性
 
 - **多语言翻译** — 自动识别输入语言，中文翻英文，其他语言翻中文
