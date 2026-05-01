@@ -6,6 +6,8 @@ AI 编程工具的翻译插件，一行命令安装，支持多语言翻译和�
 
 ---
 
+![demo](assets/demo.png)
+
 ## 功能特性
 
 - **多语言翻译** — 自动识别输入语言，中文翻英文，其他语言翻中文
@@ -13,7 +15,7 @@ AI 编程工具的翻译插件，一行命令安装，支持多语言翻译和�
 - **语音朗读** — 翻译后自动朗读原文（macOS / Windows / Linux）
 - **AI 工具识别** — 识别当前 AI 工具的命令并补充用法说明
 - **Markdown 排版** — 加粗、斜体、代码样式，终端阅读更清晰
-- **多工具支持** — Claude Code、Codex、OpenCode、Cursor
+- **多工具支持** — Claude Code、Codex、OpenCode、Cursor、Windsurf
 
 ## 安装
 
@@ -141,6 +143,7 @@ adj. 已弃用的，不推荐使用的
 | Codex | `~/.codex/skills/` | `$t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K` → `user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |
+| Windsurf | `~/.codeium/windsurf/global_workflows/` | `/t word` |
 
 ## 更新
 
@@ -167,6 +170,9 @@ rm ~/.config/opencode/commands/t.md ~/.config/opencode/commands/ts.md
 
 # Cursor
 rm ~/.cursor/commands/t.md ~/.cursor/commands/ts.md
+
+# Windsurf
+rm ~/.codeium/windsurf/global_workflows/t.md ~/.codeium/windsurf/global_workflows/ts.md
 ```
 
 ## License

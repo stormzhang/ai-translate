@@ -80,6 +80,22 @@ description: AI 翻译 + 语音朗读（支持中英双向及多语言）
 
 $TS_MD"
 
+# --- windsurf workflows format ---
+
+WINDSURF_T_MD="---
+name: t
+description: AI 翻译（支持中英双向及多语言）
+---
+
+$T_MD"
+
+WINDSURF_TS_MD="---
+name: ts
+description: AI 翻译 + 语音朗读（支持中英双向及多语言）
+---
+
+$TS_MD"
+
 # --- install ---
 
 install_commands() {
@@ -128,6 +144,28 @@ install_codex() {
     INSTALLED=1
 }
 
+install_windsurf() {
+    local dir="$HOME/.codeium/windsurf/global_workflows"
+    mkdir -p "$dir"
+    if [ -f "$dir/t.md" ]; then
+        printf "Windsurf 已安装翻译工具，是否覆盖更新？(y/N) "
+        read -r answer < /dev/tty
+        if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+            echo "[SKIP] Windsurf - skipped"
+            INSTALLED=1
+            return
+        fi
+        echo "$WINDSURF_T_MD" > "$dir/t.md"
+        echo "$WINDSURF_TS_MD" > "$dir/ts.md"
+        echo "[OK] Windsurf - updated"
+    else
+        echo "$WINDSURF_T_MD" > "$dir/t.md"
+        echo "$WINDSURF_TS_MD" > "$dir/ts.md"
+        echo "[OK] Windsurf - installed"
+    fi
+    INSTALLED=1
+}
+
 # Claude Code
 if [ -d "$HOME/.claude" ]; then
     install_commands "Claude Code" "$HOME/.claude/commands"
@@ -150,6 +188,11 @@ if [ -d "$HOME/.cursor" ]; then
     install_commands "Cursor" "$HOME/.cursor/commands"
 fi
 
+# Windsurf
+if [ -d "$HOME/.codeium/windsurf" ]; then
+    install_windsurf
+fi
+
 if [ $INSTALLED -eq 0 ]; then
     echo "未检测到支持的 AI 编程工具，请先安装以下任一工具："
     echo ""
@@ -157,6 +200,7 @@ if [ $INSTALLED -eq 0 ]; then
     echo "  Codex        https://github.com/openai/codex"
     echo "  OpenCode     https://github.com/opencode-ai/opencode"
     echo "  Cursor       https://cursor.com"
+    echo "  Windsurf     https://windsurf.com"
     echo ""
     echo "安装完成后重新运行此脚本即可。"
     exit 1

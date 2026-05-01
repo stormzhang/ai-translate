@@ -2,9 +2,11 @@
 
 [中文文档](README_CN.md)
 
-AI translate tool for Claude Code, Codex, OpenCode & Cursor. One-line install, multi-language support with speech.
+AI translate tool for Claude Code, Codex, OpenCode, Cursor & Windsurf. One-line install, multi-language support with speech.
 
 ---
+
+![demo](assets/demo.png)
 
 ## Features
 
@@ -13,7 +15,7 @@ AI translate tool for Claude Code, Codex, OpenCode & Cursor. One-line install, m
 - **Speech** — Text-to-speech pronunciation (macOS / Windows / Linux)
 - **AI Tool Context** — Recognizes AI tool commands and explains their usage
 - **Markdown Formatting** — Bold, italic, code style for better readability
-- **Multi-tool Support** — Claude Code, Codex, OpenCode, Cursor
+- **Multi-tool Support** — Claude Code, Codex, OpenCode, Cursor, Windsurf
 
 ## Installation
 
@@ -143,6 +145,7 @@ Speech support by platform:
 | Codex | `~/.codex/skills/` | `$t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K` → `user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |
+| Windsurf | `~/.codeium/windsurf/global_workflows/` | `/t word` |
 
 ## Update
 
@@ -169,6 +172,9 @@ rm ~/.config/opencode/commands/t.md ~/.config/opencode/commands/ts.md
 
 # Cursor
 rm ~/.cursor/commands/t.md ~/.cursor/commands/ts.md
+
+# Windsurf
+rm ~/.codeium/windsurf/global_workflows/t.md ~/.codeium/windsurf/global_workflows/ts.md
 ```
 
 ## License

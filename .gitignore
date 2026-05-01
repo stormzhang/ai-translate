@@ -3,3 +3,5 @@
 .codex/
 .vscode/
 .idea/
+gen_demo.py
+philosophy.md
