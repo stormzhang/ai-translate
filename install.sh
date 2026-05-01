@@ -73,8 +73,31 @@ if [ -d "$HOME/.codex" ]; then
     INSTALLED=1
 fi
 
+# OpenCode
+OPENCODE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/commands"
+if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/opencode" ] || [ -d "$HOME/.opencode" ]; then
+    if [ -d "$HOME/.opencode" ]; then
+        OPENCODE_DIR="$HOME/.opencode/commands"
+    fi
+    mkdir -p "$OPENCODE_DIR"
+    echo "$T_MD" > "$OPENCODE_DIR/t.md"
+    echo "$TS_MD" > "$OPENCODE_DIR/ts.md"
+    echo "[OK] OpenCode - installed"
+    INSTALLED=1
+fi
+
+# Cursor
+if [ -d "$HOME/.cursor" ]; then
+    mkdir -p "$HOME/.cursor/commands"
+    echo "$T_MD" > "$HOME/.cursor/commands/t.md"
+    echo "$TS_MD" > "$HOME/.cursor/commands/ts.md"
+    echo "[OK] Cursor - installed"
+    INSTALLED=1
+fi
+
 if [ $INSTALLED -eq 0 ]; then
-    echo "未检测到 Claude Code 或 Codex，请先安装其中一个。"
+    echo "未检测到支持的 AI 工具（Claude Code / Codex / OpenCode / Cursor）。"
+    echo "请先安装其中一个。"
     exit 1
 fi
 
