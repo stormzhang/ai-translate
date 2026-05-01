@@ -1,29 +1,29 @@
 # ai-translate
 
-[中文文档](README_CN.md)
+[English](README.md)
 
-AI translate tool for Claude Code, Codex, OpenCode & Cursor. One-line install, multi-language support with speech.
+AI 编程工具的翻译插件，一行命令安装，支持多语言翻译和语音朗读。
 
 ---
 
-## Features
+## 功能特性
 
-- **Multi-language** — Auto-detect input language. Chinese to English, any other language to Chinese
-- **Polysemy** — Up to 5 meanings for words with multiple definitions
-- **Speech** — Text-to-speech pronunciation (macOS / Windows / Linux)
-- **AI Tool Context** — Recognizes AI tool commands and explains their usage
-- **Markdown Formatting** — Bold, italic, code style for better readability
-- **Multi-tool Support** — Claude Code, Codex, OpenCode, Cursor
+- **多语言翻译** — 自动识别输入语言，中文翻英文，其他语言翻中文
+- **多义词** — 多个常用含义分行展示，最多 5 个
+- **语音朗读** — 翻译后自动朗读原文（macOS / Windows / Linux）
+- **AI 工具识别** — 识别当前 AI 工具的命令并补充用法说明
+- **Markdown 排版** — 加粗、斜体、代码样式，终端阅读更清晰
+- **多工具支持** — Claude Code、Codex、OpenCode、Cursor
 
-## Installation
+## 安装
 
-### One-line install
+### 一行命令安装
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/stormzhang/ai-translate/master/install.sh | bash
 ```
 
-### Or clone and install
+### 或者 clone 安装
 
 ```bash
 git clone https://github.com/stormzhang/ai-translate.git
@@ -31,7 +31,7 @@ cd ai-translate
 ./install.sh
 ```
 
-The installer auto-detects which AI tools you have and installs accordingly:
+安装脚本会自动检测已安装的 AI 工具：
 
 ```
 [OK] Claude Code - installed
@@ -44,13 +44,11 @@ Usage:
   /ts word         translate + speech
 ```
 
-## Usage
+## 使用方法
 
-### `/t` — Translate
+### `/t` — 纯翻译
 
-Translate only, no speech.
-
-#### Translate a word
+#### 翻译单词
 
 ```
 > /t ephemeral
@@ -61,7 +59,7 @@ adj. 短暂的，转瞬即逝的
 翻译：樱花之美转瞬即逝。
 ```
 
-#### Polysemy (multiple meanings)
+#### 多义词
 
 ```
 > /t run
@@ -76,7 +74,7 @@ adj. 短暂的，转瞬即逝的
 翻译：这个程序在我的机器上运行流畅。
 ```
 
-#### Chinese to English
+#### 中文翻译为英文
 
 ```
 > /t 短暂的
@@ -86,7 +84,7 @@ adj. 短暂的，转瞬即逝的
 翻译：名声转瞬即逝，但知识永存。
 ```
 
-#### Translate a sentence
+#### 翻译句子
 
 ```
 > /t See what the GitHub community is most excited about today.
@@ -94,7 +92,7 @@ adj. 短暂的，转瞬即逝的
 看看今天 GitHub 社区最热门的是什么。
 ```
 
-#### AI tool command recognition
+#### AI 工具命令识别
 
 ```
 > /t hook
@@ -109,9 +107,9 @@ Claude Code 内部命令：hook 是在特定事件（如工具调用前后）自
 shell 脚本，通过 settings.json 配置，用于自动化工作流。
 ```
 
-### `/ts` — Translate + Speech
+### `/ts` — 翻译 + 语音朗读
 
-Same as `/t`, but also reads the text aloud after translating.
+功能同 `/t`，翻译完成后自动朗读英文原文。
 
 ```
 > /ts deprecated
@@ -124,37 +122,37 @@ adj. 已弃用的，不推荐使用的
 🔊 Playing audio...
 ```
 
-Speech support by platform:
+各平台语音引擎：
 
-| Platform | Engine |
-|----------|--------|
+| 平台 | 引擎 |
+|------|------|
 | macOS | `say -v Samantha` |
 | Windows | PowerShell `SpeechSynthesizer` |
 | Linux | `espeak` |
 
-> Note: Speech on Windows and Linux is untested. Contributions welcome.
+> 注：Windows 和 Linux 平台的语音功能未经测试，欢迎反馈。
 
-## Supported Tools
+## 支持工具
 
-| Tool | Install Path | Invoke |
-|------|-------------|--------|
-| Claude Code (CLI / Desktop / Web) | `~/.claude/commands/` | `/t word` |
+| 工具 | 安装路径 | 调用方式 |
+|------|---------|---------|
+| Claude Code（CLI / 桌面版 / Web） | `~/.claude/commands/` | `/t word` |
 | Codex | `~/.codex/prompts/` | `/prompts:t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K` → `user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |
 
-## Update
+## 更新
 
-Run the same install command again. The installer will detect existing installation and ask before overwriting:
+再次运行安装命令即可。检测到已安装时会询问是否覆盖：
 
 ```
 Claude Code 已安装翻译工具，是否覆盖更新？(y/N) y
 [OK] Claude Code - updated
 ```
 
-## Uninstall
+## 卸载
 
-Remove the command files manually:
+手动删除命令文件：
 
 ```bash
 # Claude Code
