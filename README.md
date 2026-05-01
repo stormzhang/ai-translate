@@ -42,6 +42,7 @@ Done! v1.0.0 installed
 Usage:
   /t word          translate
   /ts word         translate + speech
+  (Codex: $t word / $ts word)
 ```
 
 ## Usage
@@ -139,7 +140,7 @@ Speech support by platform:
 | Tool | Install Path | Invoke |
 |------|-------------|--------|
 | Claude Code (CLI / Desktop / Web) | `~/.claude/commands/` | `/t word` |
-| Codex | `~/.codex/prompts/` | `/prompts:t word` |
+| Codex | `~/.codex/skills/` | `$t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K` → `user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |
 
@@ -161,7 +162,7 @@ Remove the command files manually:
 rm ~/.claude/commands/t.md ~/.claude/commands/ts.md
 
 # Codex
-rm ~/.codex/prompts/t.md ~/.codex/prompts/ts.md
+rm -rf ~/.codex/skills/t ~/.codex/skills/ts
 
 # OpenCode
 rm ~/.config/opencode/commands/t.md ~/.config/opencode/commands/ts.md

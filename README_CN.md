@@ -42,6 +42,7 @@ Done! v1.0.0 installed
 Usage:
   /t word          translate
   /ts word         translate + speech
+  (Codex: $t word / $ts word)
 ```
 
 ## 使用方法
@@ -137,7 +138,7 @@ adj. 已弃用的，不推荐使用的
 | 工具 | 安装路径 | 调用方式 |
 |------|---------|---------|
 | Claude Code（CLI / 桌面版 / Web） | `~/.claude/commands/` | `/t word` |
-| Codex | `~/.codex/prompts/` | `/prompts:t word` |
+| Codex | `~/.codex/skills/` | `$t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K` → `user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |
 
@@ -159,7 +160,7 @@ Claude Code 已安装翻译工具，是否覆盖更新？(y/N) y
 rm ~/.claude/commands/t.md ~/.claude/commands/ts.md
 
 # Codex
-rm ~/.codex/prompts/t.md ~/.codex/prompts/ts.md
+rm -rf ~/.codex/skills/t ~/.codex/skills/ts
 
 # OpenCode
 rm ~/.config/opencode/commands/t.md ~/.config/opencode/commands/ts.md

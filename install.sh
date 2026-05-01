@@ -64,6 +64,22 @@ AI 翻译 + 语音朗读（支持中英双向及多语言）@author: stormzhang
 要翻译的内容：$ARGUMENTS
 PROMPT_EOF
 
+# --- codex skills format ---
+
+CODEX_T_SKILL="---
+name: t
+description: AI 翻译（支持中英双向及多语言）
+---
+
+$T_MD"
+
+CODEX_TS_SKILL="---
+name: ts
+description: AI 翻译 + 语音朗读（支持中英双向及多语言）
+---
+
+$TS_MD"
+
 # --- install ---
 
 install_commands() {
@@ -88,6 +104,30 @@ install_commands() {
     INSTALLED=1
 }
 
+install_codex() {
+    local t_dir="$HOME/.codex/skills/t"
+    local ts_dir="$HOME/.codex/skills/ts"
+    mkdir -p "$t_dir" "$ts_dir"
+    if [ -f "$t_dir/SKILL.md" ]; then
+        printf "Codex 已安装翻译工具，是否覆盖更新？(y/N) "
+        read -r answer < /dev/tty
+        if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
+            echo "[SKIP] Codex - skipped"
+            INSTALLED=1
+            return
+        fi
+        echo "$CODEX_T_SKILL" > "$t_dir/SKILL.md"
+        echo "$CODEX_TS_SKILL" > "$ts_dir/SKILL.md"
+        echo "[OK] Codex - updated"
+    else
+        echo "$CODEX_T_SKILL" > "$t_dir/SKILL.md"
+        echo "$CODEX_TS_SKILL" > "$ts_dir/SKILL.md"
+        echo "[OK] Codex - installed"
+    fi
+    rm -f "$HOME/.codex/prompts/t.md" "$HOME/.codex/prompts/ts.md" 2>/dev/null
+    INSTALLED=1
+}
+
 # Claude Code
 if [ -d "$HOME/.claude" ]; then
     install_commands "Claude Code" "$HOME/.claude/commands"
@@ -95,7 +135,7 @@ fi
 
 # Codex
 if [ -d "$HOME/.codex" ]; then
-    install_commands "Codex" "$HOME/.codex/prompts"
+    install_codex
 fi
 
 # OpenCode
@@ -128,3 +168,4 @@ echo ""
 echo "Usage:"
 echo "  /t word          translate"
 echo "  /ts word         translate + speech"
+echo "  (Codex: \$t word / \$ts word)"
