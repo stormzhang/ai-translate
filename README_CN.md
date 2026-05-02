@@ -162,27 +162,6 @@ Claude Code 已安装翻译工具，是否覆盖更新？(y/N) y
 [OK] Claude Code - updated
 ```
 
-## 卸载
-
-手动删除命令文件：
-
-```bash
-# Claude Code
-rm ~/.claude/commands/t.md ~/.claude/commands/ts.md
-
-# Codex
-rm -rf ~/.codex/skills/t ~/.codex/skills/ts
-
-# OpenCode
-rm ~/.config/opencode/commands/t.md ~/.config/opencode/commands/ts.md
-
-# Cursor
-rm ~/.cursor/commands/t.md ~/.cursor/commands/ts.md
-
-# Windsurf
-rm ~/.codeium/windsurf/global_workflows/t.md ~/.codeium/windsurf/global_workflows/ts.md
-```
-
 ## License
 
 [MIT](LICENSE)
