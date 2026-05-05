@@ -59,7 +59,7 @@ AI 翻译 + 语音朗读（支持中英双向及多语言）@author: stormzhang
 - Windows: `powershell -Command "Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('$ARGUMENTS')"`
 - Linux: `espeak '$ARGUMENTS'`
 
-根据当前系统自动选择对应命令。
+根据当前系统自动选择对应命令。如果语音命令执行失败，不要输出错误信息，只需提示「当前系统暂不支持语音朗读」。
 
 要翻译的内容：$ARGUMENTS
 PROMPT_EOF
