@@ -47,7 +47,7 @@ The installer auto-detects which AI tools you have and installs accordingly:
 [OK] Claude Code - installed
 [OK] Codex - installed
 
-Done! v1.0.0 installed
+Done! v1.1.0 installed
 
 Usage:
   /t word          translate
@@ -149,7 +149,7 @@ Speech support by platform:
 
 | Tool | Install Path | Invoke |
 |------|-------------|--------|
-| Claude Code (CLI / Desktop / Web) | `~/.claude/commands/` | `/t word` |
+| Claude Code (CLI / Desktop / Web) | `~/.claude/skills/` | `/t word` |
 | Codex | `~/.codex/skills/` | `$t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K` → `user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |

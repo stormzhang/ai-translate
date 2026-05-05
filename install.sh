@@ -167,7 +167,7 @@ fi
 
 # Cursor
 if [ -d "$HOME/.cursor" ]; then
-    install_flat "Cursor" "$HOME/.cursor/commands" "$T_MD" "$TS_MD"
+    install_flat "Cursor" "$HOME/.cursor/commands" "$BASIC_T_SKILL" "$BASIC_TS_SKILL"
 fi
 
 # Windsurf

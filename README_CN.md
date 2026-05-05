@@ -47,7 +47,7 @@ cd ai-translate
 [OK] Claude Code - installed
 [OK] Codex - installed
 
-Done! v1.0.0 installed
+Done! v1.1.0 installed
 
 Usage:
   /t word          translate
@@ -147,7 +147,7 @@ adj. 已弃用的，不推荐使用的
 
 | 工具 | 安装路径 | 调用方式 |
 |------|---------|---------|
-| Claude Code（CLI / 桌面版 / Web） | `~/.claude/commands/` | `/t word` |
+| Claude Code（CLI / 桌面版 / Web） | `~/.claude/skills/` | `/t word` |
 | Codex | `~/.codex/skills/` | `$t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K` → `user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |
