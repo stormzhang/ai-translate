@@ -1,9 +1,9 @@
 #!/bin/bash
 
-VERSION="1.0.0"
+VERSION="1.1.0"
 INSTALLED=0
 
-# --- embedded command files ---
+# --- prompt content ---
 
 read -r -d '' T_MD << 'PROMPT_EOF'
 AI 翻译（支持中英双向及多语言）@author: stormzhang
@@ -64,42 +64,44 @@ AI 翻译 + 语音朗读（支持中英双向及多语言）@author: stormzhang
 要翻译的内容：$ARGUMENTS
 PROMPT_EOF
 
-# --- codex skills format ---
+# --- tool-specific formats ---
 
-CODEX_T_SKILL="---
+BASIC_T_SKILL="---
 name: t
 description: AI 翻译（支持中英双向及多语言）
 ---
 
 $T_MD"
 
-CODEX_TS_SKILL="---
+BASIC_TS_SKILL="---
 name: ts
 description: AI 翻译 + 语音朗读（支持中英双向及多语言）
 ---
 
 $TS_MD"
 
-# --- windsurf workflows format ---
-
-WINDSURF_T_MD="---
+CLAUDE_T_SKILL="---
 name: t
-description: AI 翻译（支持中英双向及多语言）
+description: AI 翻译（支持中英双向及多语言）@author: stormzhang
+context: fork
+allowed-tools: []
 ---
 
 $T_MD"
 
-WINDSURF_TS_MD="---
+CLAUDE_TS_SKILL="---
 name: ts
-description: AI 翻译 + 语音朗读（支持中英双向及多语言）
+description: AI 翻译 + 语音朗读（支持中英双向及多语言）@author: stormzhang
+context: fork
+allowed-tools: [\"Bash\"]
 ---
 
 $TS_MD"
 
-# --- install ---
+# --- install functions ---
 
-install_commands() {
-    local name=$1 dir=$2
+install_flat() {
+    local name=$1 dir=$2 t_content=$3 ts_content=$4
     mkdir -p "$dir"
     if [ -f "$dir/t.md" ]; then
         printf "$name 已安装翻译工具，是否覆盖更新？(y/N) "
@@ -109,88 +111,68 @@ install_commands() {
             INSTALLED=1
             return
         fi
-        echo "$T_MD" > "$dir/t.md"
-        echo "$TS_MD" > "$dir/ts.md"
-        echo "[OK] $name - updated"
+        local action="updated"
     else
-        echo "$T_MD" > "$dir/t.md"
-        echo "$TS_MD" > "$dir/ts.md"
-        echo "[OK] $name - installed"
+        local action="installed"
     fi
+    echo "$t_content" > "$dir/t.md"
+    echo "$ts_content" > "$dir/ts.md"
+    echo "[OK] $name - $action"
     INSTALLED=1
 }
 
-install_codex() {
-    local t_dir="$HOME/.codex/skills/t"
-    local ts_dir="$HOME/.codex/skills/ts"
+install_skill() {
+    local name=$1 base_dir=$2 t_content=$3 ts_content=$4
+    local t_dir="$base_dir/t"
+    local ts_dir="$base_dir/ts"
     mkdir -p "$t_dir" "$ts_dir"
     if [ -f "$t_dir/SKILL.md" ]; then
-        printf "Codex 已安装翻译工具，是否覆盖更新？(y/N) "
+        printf "$name 已安装翻译工具，是否覆盖更新？(y/N) "
         read -r answer < /dev/tty
         if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
-            echo "[SKIP] Codex - skipped"
+            echo "[SKIP] $name - skipped"
             INSTALLED=1
             return
         fi
-        echo "$CODEX_T_SKILL" > "$t_dir/SKILL.md"
-        echo "$CODEX_TS_SKILL" > "$ts_dir/SKILL.md"
-        echo "[OK] Codex - updated"
+        local action="updated"
     else
-        echo "$CODEX_T_SKILL" > "$t_dir/SKILL.md"
-        echo "$CODEX_TS_SKILL" > "$ts_dir/SKILL.md"
-        echo "[OK] Codex - installed"
+        local action="installed"
     fi
-    rm -f "$HOME/.codex/prompts/t.md" "$HOME/.codex/prompts/ts.md" 2>/dev/null
+    echo "$t_content" > "$t_dir/SKILL.md"
+    echo "$ts_content" > "$ts_dir/SKILL.md"
+    echo "[OK] $name - $action"
     INSTALLED=1
 }
 
-install_windsurf() {
-    local dir="$HOME/.codeium/windsurf/global_workflows"
-    mkdir -p "$dir"
-    if [ -f "$dir/t.md" ]; then
-        printf "Windsurf 已安装翻译工具，是否覆盖更新？(y/N) "
-        read -r answer < /dev/tty
-        if [ "$answer" != "y" ] && [ "$answer" != "Y" ]; then
-            echo "[SKIP] Windsurf - skipped"
-            INSTALLED=1
-            return
-        fi
-        echo "$WINDSURF_T_MD" > "$dir/t.md"
-        echo "$WINDSURF_TS_MD" > "$dir/ts.md"
-        echo "[OK] Windsurf - updated"
-    else
-        echo "$WINDSURF_T_MD" > "$dir/t.md"
-        echo "$WINDSURF_TS_MD" > "$dir/ts.md"
-        echo "[OK] Windsurf - installed"
-    fi
-    INSTALLED=1
-}
+# --- detect and install ---
 
-# Claude Code
+# Claude Code (skills with context: fork)
 if [ -d "$HOME/.claude" ]; then
-    install_commands "Claude Code" "$HOME/.claude/commands"
+    install_skill "Claude Code" "$HOME/.claude/skills" "$CLAUDE_T_SKILL" "$CLAUDE_TS_SKILL"
+    rm -f "$HOME/.claude/commands/t.md" "$HOME/.claude/commands/ts.md" 2>/dev/null
 fi
 
 # Codex
 if [ -d "$HOME/.codex" ]; then
-    install_codex
+    install_skill "Codex" "$HOME/.codex/skills" "$BASIC_T_SKILL" "$BASIC_TS_SKILL"
+    rm -f "$HOME/.codex/prompts/t.md" "$HOME/.codex/prompts/ts.md" 2>/dev/null
 fi
 
 # OpenCode
 OPENCODE_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/opencode/commands"
 if [ -d "${XDG_CONFIG_HOME:-$HOME/.config}/opencode" ] || [ -d "$HOME/.opencode" ]; then
     [ -d "$HOME/.opencode" ] && OPENCODE_DIR="$HOME/.opencode/commands"
-    install_commands "OpenCode" "$OPENCODE_DIR"
+    install_flat "OpenCode" "$OPENCODE_DIR" "$T_MD" "$TS_MD"
 fi
 
 # Cursor
 if [ -d "$HOME/.cursor" ]; then
-    install_commands "Cursor" "$HOME/.cursor/commands"
+    install_flat "Cursor" "$HOME/.cursor/commands" "$T_MD" "$TS_MD"
 fi
 
 # Windsurf
 if [ -d "$HOME/.codeium/windsurf" ]; then
-    install_windsurf
+    install_flat "Windsurf" "$HOME/.codeium/windsurf/global_workflows" "$BASIC_T_SKILL" "$BASIC_TS_SKILL"
 fi
 
 if [ $INSTALLED -eq 0 ]; then
