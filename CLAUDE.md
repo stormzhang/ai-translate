@@ -11,8 +11,9 @@ prompts/           # prompt 源文件（开发参考，不参与安装）
   ts.md             # 翻译 + 语音
 assets/             # README 资源
   demo.png          # 终端截图
-README.md           # 英文文档
-README_CN.md        # 中文文档
+README.md           # 中文默认文档
+README_EN.md        # 英文文档
+README_CN.md        # 中文文档兼容入口
 ```
 
 ## 支持工具

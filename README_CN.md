@@ -1,6 +1,6 @@
 # ai-translate
 
-[English](README.md)
+[English](README_EN.md)
 
 AI 编程工具的翻译插件，一行命令安装，支持多语言翻译和语音朗读。
 
