@@ -30,7 +30,7 @@ AI 编程工具的翻译插件，一行命令安装，支持多语言翻译和�
 ### 一行命令安装
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/stormzhang/ai-translate/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/stormzhang/ai-translate/main/install.sh | bash
 ```
 
 ### 或者 clone 安装

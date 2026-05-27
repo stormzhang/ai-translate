@@ -30,7 +30,7 @@ AI translate tool for Claude Code, Codex, OpenCode, Cursor & Windsurf. One-line 
 ### One-line install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/stormzhang/ai-translate/master/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/stormzhang/ai-translate/main/install.sh | bash
 ```
 
 ### Or clone and install
