@@ -10,7 +10,7 @@ AI 编程工具的翻译插件，一行命令安装，支持多语言翻译和�
 
 ## 为什么选 ai-translate
 
-1. **唯一的多编码工具翻译插件** — 同时覆盖 Claude Code、Codex、Cursor、Windsurf、OpenCode 五个平台
+1. **唯一的多编码工具翻译插件** — 同时覆盖 Claude Code、Kimi Code、Codex、Cursor、Windsurf、OpenCode 六个平台
 2. **零摩擦** — 不离开编码工具，`/t word` 直接查词
 3. **AI 原生** — 利用编码工具内置 LLM，不需要额外 API Key
 4. **极致轻量** — 本质是一段 prompt，零依赖、秒安装、token 消耗极少
@@ -23,7 +23,7 @@ AI 编程工具的翻译插件，一行命令安装，支持多语言翻译和�
 - **语音朗读** — 翻译后自动朗读原文（macOS / Windows / Linux）
 - **AI 工具识别** — 识别当前 AI 工具的命令并补充用法说明
 - **Markdown 排版** — 加粗、斜体、代码样式，终端阅读更清晰
-- **多工具支持** — Claude Code、Codex、OpenCode、Cursor、Windsurf
+- **多工具支持** — Claude Code、Kimi Code、Codex、OpenCode、Cursor、Windsurf
 
 ## 安装
 
@@ -47,7 +47,7 @@ cd ai-translate
 [OK] Claude Code - installed
 [OK] Codex - installed
 
-Done! v1.1.0 installed
+Done! v1.2.0 installed
 
 Usage:
   /t word          translate
@@ -148,6 +148,7 @@ adj. 已弃用的，不推荐使用的
 | 工具 | 安装路径 | 调用方式 |
 |------|---------|---------|
 | Claude Code（CLI / 桌面版 / Web） | `~/.claude/skills/` | `/t word` |
+| Kimi Code | `~/.kimi-code/skills/` | `/skill:t word` |
 | Codex | `~/.codex/skills/` | `$t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K` → `user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |

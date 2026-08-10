@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.1.0"
+VERSION="1.2.0"
 INSTALLED=0
 
 # --- prompt content ---
@@ -152,6 +152,12 @@ if [ -d "$HOME/.claude" ]; then
     rm -f "$HOME/.claude/commands/t.md" "$HOME/.claude/commands/ts.md" 2>/dev/null
 fi
 
+# Kimi Code
+KIMI_SKILLS_DIR="${KIMI_CODE_HOME:-$HOME/.kimi-code}/skills"
+if [ -n "$KIMI_CODE_HOME" ] || [ -d "$HOME/.kimi-code" ]; then
+    install_skill "Kimi Code" "$KIMI_SKILLS_DIR" "$BASIC_T_SKILL" "$BASIC_TS_SKILL"
+fi
+
 # Codex
 if [ -d "$HOME/.codex" ]; then
     install_skill "Codex" "$HOME/.codex/skills" "$BASIC_T_SKILL" "$BASIC_TS_SKILL"
@@ -179,6 +185,7 @@ if [ $INSTALLED -eq 0 ]; then
     echo "未检测到支持的 AI 编程工具，请先安装以下任一工具："
     echo ""
     echo "  Claude Code  https://claude.ai/code"
+    echo "  Kimi Code    https://www.kimi.com/code"
     echo "  Codex        https://github.com/openai/codex"
     echo "  OpenCode     https://github.com/opencode-ai/opencode"
     echo "  Cursor       https://cursor.com"
@@ -195,3 +202,4 @@ echo "Usage:"
 echo "  /t word          translate"
 echo "  /ts word         translate + speech"
 echo "  (Codex: \$t word / \$ts word)"
+echo "  (Kimi Code: /skill:t word / /skill:ts word)"

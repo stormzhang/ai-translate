@@ -20,6 +20,7 @@ README_EN.md        # 英文文档
 | 工具 | 安装路径 | 调用方式 |
 |------|---------|---------|
 | Claude Code | `~/.claude/skills/t/SKILL.md` | `/t word` |
+| Kimi Code | `~/.kimi-code/skills/t/SKILL.md` | `/skill:t word` |
 | Codex | `~/.codex/skills/t/SKILL.md` | `$t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K → user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |

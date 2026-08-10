@@ -2,7 +2,7 @@
 
 [中文文档](README.md)
 
-AI translate tool for Claude Code, Codex, OpenCode, Cursor & Windsurf. One-line install, multi-language support with speech.
+AI translate tool for Claude Code, Kimi Code, Codex, OpenCode, Cursor & Windsurf. One-line install, multi-language support with speech.
 
 ---
 
@@ -10,7 +10,7 @@ AI translate tool for Claude Code, Codex, OpenCode, Cursor & Windsurf. One-line 
 
 ## Why ai-translate
 
-1. **The only multi-tool translation plugin** — Works across Claude Code, Codex, Cursor, Windsurf & OpenCode
+1. **The only multi-tool translation plugin** — Works across Claude Code, Kimi Code, Codex, Cursor, Windsurf & OpenCode
 2. **Zero friction** — Never leave your coding tool, just `/t word`
 3. **AI-native** — Powered by the built-in LLM, no extra API key needed
 4. **Ultra-lightweight** — Just a prompt file, zero dependencies, minimal token usage
@@ -23,7 +23,7 @@ AI translate tool for Claude Code, Codex, OpenCode, Cursor & Windsurf. One-line 
 - **Speech** — Text-to-speech pronunciation (macOS / Windows / Linux)
 - **AI Tool Context** — Recognizes AI tool commands and explains their usage
 - **Markdown Formatting** — Bold, italic, code style for better readability
-- **Multi-tool Support** — Claude Code, Codex, OpenCode, Cursor, Windsurf
+- **Multi-tool Support** — Claude Code, Kimi Code, Codex, OpenCode, Cursor, Windsurf
 
 ## Installation
 
@@ -47,7 +47,7 @@ The installer auto-detects which AI tools you have and installs accordingly:
 [OK] Claude Code - installed
 [OK] Codex - installed
 
-Done! v1.1.0 installed
+Done! v1.2.0 installed
 
 Usage:
   /t word          translate
@@ -150,6 +150,7 @@ Speech support by platform:
 | Tool | Install Path | Invoke |
 |------|-------------|--------|
 | Claude Code (CLI / Desktop / Web) | `~/.claude/skills/` | `/t word` |
+| Kimi Code | `~/.kimi-code/skills/` | `/skill:t word` |
 | Codex | `~/.codex/skills/` | `$t word` |
 | OpenCode | `~/.config/opencode/commands/` | `Ctrl+K` → `user:t` |
 | Cursor | `~/.cursor/commands/` | `/t word` |
