@@ -47,7 +47,7 @@ The installer auto-detects which AI tools you have and installs accordingly:
 [OK] Claude Code - installed
 [OK] Codex - installed
 
-Done! v1.2.0 installed
+Done! v1.2.1 installed
 
 Usage:
   /t word          translate

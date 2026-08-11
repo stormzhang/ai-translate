@@ -7,6 +7,7 @@
 ## 已完成
 
 - 2026-08-11 12:16 适配 Kimi Code：install.sh 新增检测与安装（`~/.kimi-code/skills/t|ts/SKILL.md`，调用方式 `/skill:t word`），README / README_EN / CLAUDE.md 同步更新，版本升级至 v1.2.0
+- 2026-08-11 12:36 发布 v1.2.1：版本号升级，打 tag 并发布 GitHub Release
 - Claude Code、Codex、OpenCode、Cursor、Windsurf 五平台适配（v1.1.0 及之前，具体日期见 git 历史）
 
 ## 进行中

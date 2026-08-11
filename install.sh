@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION="1.2.0"
+VERSION="1.2.1"
 INSTALLED=0
 
 # --- prompt content ---
