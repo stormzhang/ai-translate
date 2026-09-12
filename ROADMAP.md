@@ -30,3 +30,4 @@
 ## 最近验证
 
 - 2026-08-11 12:16 `bash -n install.sh` 语法检查通过；本机执行 `bash install.sh` 成功安装 Kimi Code skill（输出 `[OK] Kimi Code - installed`），装好的 `~/.kimi-code/skills/t/SKILL.md` 与 `ts/SKILL.md` 内容格式检查无误
+- 2026-06-19 核实 Claude Code `context: fork` 机制（依据官方 skills.md、sub-agents.md）：skill 的 `context: fork` 不继承主对话历史，与 `/fork` 命令（继承整个对话）是两回事；所有隔离类子 agent 机制（fork skill、named subagent、background、`/fork`）输出都会折叠或进后台面板，「不污染上下文」与「结果不折叠」无法两全。结论：`/t` `/ts` 用 `context: fork` 是有意策略，折叠是换取上下文洁净的必要代价，保持现状不改

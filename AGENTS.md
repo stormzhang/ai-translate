@@ -30,7 +30,7 @@ README_EN.md        # 英文文档
 
 - prompt 内容以 `install.sh` 内嵌的 heredoc 为准，`prompts/` 目录仅做参考
 - 修改 prompt 后需同步更新 `install.sh` 中对应的 heredoc
-- Claude Code 使用 skills 格式（带 `context: fork` 省 token），Codex/Windsurf 需要 YAML frontmatter，在 install.sh 中通过变量拼接生成
+- Claude Code 使用 skills 格式（`context: fork` 用于隔离执行过程、不污染主对话上下文；代价是子 agent 输出会被 UI 折叠，属有意取舍），Codex/Windsurf 需要 YAML frontmatter，在 install.sh 中通过变量拼接生成
 - 版本号在 `install.sh` 顶部的 `VERSION` 变量管理
 
 ## 验证方式
